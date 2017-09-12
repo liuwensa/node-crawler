@@ -10,8 +10,9 @@ const getPageUtf8ByProxy = request.getPageUtf8ByProxy;
 const reqGetByProxy      = request.reqGetByProxy;
 
 module.exports = {
-  cronCrawlTouTiaos: cronCrawlTouTiaos,
-  reqTtouTiaos     : reqTtouTiaos
+  cronCrawlTouTiaos,
+  reqTtouTiaos,
+  touTiaoNewsDetail
 };
 
 /**
@@ -137,4 +138,21 @@ function getArticleDetail(sourceUrl) {
       origin : origin
     };
   });
+}
+
+async function touTiaoNewsDetail(req, res) {
+  const id = req.params.id;
+
+  if (!id) {
+    return res.json({code: 0, msg: '参数错误：id！'});
+  }
+
+  const url = `https://m.toutiao.com/i${id}/info/`;
+  
+   const results = await reqGetByProxy(url);
+   return res.send({
+     msg: "success",
+     code: 1,
+     data: results
+   });
 }

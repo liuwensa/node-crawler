@@ -6,7 +6,7 @@
 
 const schedule = require('node-schedule');
 
-const crawler = require('../controllers/crawlerToutiao');
+const crawler = require('../controllers/toutiao');
 
 
 const rule = new schedule.RecurrenceRule();
